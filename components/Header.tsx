@@ -16,7 +16,7 @@ export default function AppHeader({ Screen, bookmark = false}: { Screen: string,
     }>
       <View className='flex flex-row items-center w-full gap-2 px-8'>
         <Image source={require('../assets/images/logoIcon.png')} className='w-9 h-10'  resizeMode='contain' />
-        <Text className='text-3xl mt-2 font-bold color-white'>{Screen}</Text>
+        <Text className='text-3xl w-4/5 mt-2 font-bold color-white' numberOfLines={1} ellipsizeMode='tail'>{Screen}</Text>
 
       </View>
       
