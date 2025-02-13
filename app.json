@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/logoIcon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.theashhar.WorkWise"
     },
     "web": {
       "bundler": "metro",
@@ -36,6 +37,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "ba9a624a-0cca-4a8e-879a-b2de8cbb3c07"
+      }
     }
   }
 }

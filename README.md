@@ -11,6 +11,19 @@ WorkWise is a job listing mobile application built with React Native and Expo. I
 - **Offline Support**: Bookmarked jobs are stored in local storage for offline access.
 - **State Management**: Handles loading, error, and empty states appropriately.
 
+## Screenshots
+
+<div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; border-radius:10px;">
+
+  <img src="assets/images/ss1.png" width="190" />
+  <img src="assets/images/ss2.png" width="190" />
+  <img src="assets/images/ss3.png" width="190" />
+  <img src="assets/images/ss4.png" width="190" />
+  <img src="assets/images/ss5.png" width="190" />
+  <img src="assets/images/ss6.png" width="190" />
+
+</div>
+
 ## Tech Stack
 
 - **Framework**: React Native (Expo)
