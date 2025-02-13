@@ -8,7 +8,8 @@ export const Colors = {
   light: {
     theme: theme, // Primary color (Yellow)
     bgSecondary: '#FFFFFF', // White background for secondary elements
-    same: '#FFFFFF', // White for consistency
+    border: '#e6e3e3',
+    same: '#FFFFFF',
     invert: '#1C1C1C', // Dark text for light mode
     invertLight: '#363636', // Lighter dark text for subtlety
     text: '#1C1C1C', // Primary text color
@@ -23,7 +24,8 @@ export const Colors = {
   },
   dark: {
     theme: theme, // Primary color (Yellow)
-    bgSecondary: '#151718', // Dark background for secondary elements
+    bgSecondary: '#232729', // Dark background for secondary elements
+    border: '#3a3a3b',
     same: '#151718', // Dark for consistency
     invert: '#ECEDEE', // Light text for dark mode
     invertLight: '#CFCFCF', // Lighter text for subtlety
@@ -33,7 +35,6 @@ export const Colors = {
     icon: '#9BA1A6', // Light gray for icons
     tabIconDefault: '#9BA1A6', // Light gray for unselected tab icons
     tabIconSelected: tintColorDark, // White for selected tab icons
-    accent: '#0A84FF', // Bright blue for accents (e.g., buttons, links)
     error: '#FF453A', // Red for error messages
     success: '#30D158', // Green for success messages
   },
