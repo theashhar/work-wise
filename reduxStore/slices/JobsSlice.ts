@@ -6,13 +6,20 @@ export const jobsApi = createApi({
   endpoints: (builder) => ({
     getJobs: builder.query({
       query: (page) => `jobs?page=${page}`,
-      // Merge new jobs with existing jobs for infinite scroll
       serializeQueryArgs: ({ endpointName }) => endpointName,
       merge: (currentCache, newItems) => {
-        currentCache.push(...newItems);
+        if (!currentCache.results) {
+          currentCache.results = []; // Ensure results array exists
+        }
+        if (newItems.results.length > 0) {
+          currentCache.results.push(...newItems.results);
+        }
       },
-      // Determine if more pages are available
       forceRefetch: ({ currentArg, previousArg }) => currentArg !== previousArg,
+      transformResponse: (response) => ({
+        results: response.results || [],
+        hasMore: response.results.length > 0, // Stop fetching when no more data
+      }),
     }),
   }),
 });
