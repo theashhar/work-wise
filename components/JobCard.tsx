@@ -6,6 +6,7 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 // Define the type for the JobCard props
 type JobCardProps = {
   title: string;
+  description: string;
   location: string;
   salary: string;
   phone: string;
@@ -16,6 +17,7 @@ type JobCardProps = {
 
 const JobCard: React.FC<JobCardProps> = ({
   title,
+  description,
   location,
   salary,
   phone,
@@ -30,7 +32,7 @@ const JobCard: React.FC<JobCardProps> = ({
   const firstLetter = title.charAt(0).toUpperCase();
 
   return (
-    <TouchableOpacity
+    <TouchableOpacity activeOpacity={0.8}
       className="p-4 my-2 mx-4 rounded-2xl shadow-sm dark:bg-neutral-800 bg-white border dark:border-neutral-700 border-neutral-200"
       onPress={onPress}
     >
@@ -57,7 +59,7 @@ const JobCard: React.FC<JobCardProps> = ({
             numberOfLines={1}
             ellipsizeMode="tail"
           >
-            {title}
+            {description}
           </Text>
         </View>
 
