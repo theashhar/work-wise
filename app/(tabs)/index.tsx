@@ -63,7 +63,7 @@ const JobsScreen = () => {
       <AppHeader Screen="Jobs" />
       <View>
         {/* Search Bar */}
-        <View className="z-20 p-4 my-0 shadow-sm rounded-b-3xl border-b dark:bg-indigo-800 bg-indigo-400">
+        <View className="z-20 p-4 shadow-sm rounded-b-3xl  dark:bg-indigo-800 bg-indigo-400">
           <TextInput
             className="w-full px-6 h-16 my-0 border dark:border-indigo-400 border-indigo-800 dark:bg-neutral-800 bg-white text-neutral-800 dark:text-neutral-200 rounded-3xl"
             placeholder="Search jobs..."
@@ -88,6 +88,8 @@ const JobsScreen = () => {
               Experience={item?.primary_details?.Experience || 'No Experience Required'}
               onPress={() => console.log('Job pressed:', item.title)}
               onPressBookMark={() => console.log('Bookmarked:', item.title)}
+              job={item} // Pass the entire job object
+
             />
           )}
           keyExtractor={(item) => item.id}
