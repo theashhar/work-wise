@@ -1,50 +1,113 @@
-# Welcome to your Expo app 👋
+# WorkWise
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+WorkWise is a job listing mobile application built with React Native and Expo. It allows users to browse job listings, view job details, and bookmark jobs for offline access. The app features a bottom navigation UI with "Jobs" and "Bookmarks" sections.
 
-## Get started
+## Features
 
-1. Install dependencies
+- **Bottom Navigation**: Two main sections - Jobs and Bookmarks.
+- **Infinite Scroll**: The Jobs screen fetches job data continuously as the user scrolls.
+- **Job Details**: Clicking on a job card opens a detailed view.
+- **Bookmarking**: Users can bookmark jobs for later viewing.
+- **Offline Support**: Bookmarked jobs are stored in local storage for offline access.
+- **State Management**: Handles loading, error, and empty states appropriately.
 
-   ```bash
+## Tech Stack
+
+- **Framework**: React Native (Expo)
+- **State Management**: Redux Toolkit
+- **Navigation**: React Navigation (Bottom Tabs)
+- **Data Storage**: Async Storage (for bookmarks)
+- **UI Styling**: Tailwind CSS & NativeWind
+
+## Installation & Setup
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/workwise.git
+   cd workwise
+   ```
+2. Install dependencies:
+   ```sh
    npm install
    ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
+3. Start the development server:
+   ```sh
+   npm start
    ```
+   - To run on Android: `npm run android`
+   - To run on iOS: `npm run ios`
+   - To run on Web: `npm run web`
 
-In the output, you'll find options to open the app in a
+## Folder Structure
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+workwise/
+├── app/                     # Application screens & navigation
+│   ├── (main)/              # Main application screens
+│   │   ├── jobDetails.tsx   # Job details screen
+│   ├── (tabs)/              # Tab navigation screens
+│   │   ├── _layout.tsx      # Layout for tabs
+│   │   ├── bookmark.tsx     # Bookmarks screen
+│   │   ├── index.tsx        # Main jobs screen
+│   ├── _layout.tsx          # Root layout
+│   ├── +not-found.tsx       # 404 screen
+├── assets/                  # Static assets (fonts, images)
+├── components/              # Reusable UI components
+├── constants/               # Constants & dummy data
+│   ├── Colors.ts            # Color theme constants
+│   ├── dummy.ts             # Dummy data for testing
+├── hooks/                   # Custom React hooks
+├── reduxStore/              # Redux store setup
+│   ├── slices/              # Redux slices
+│   │   ├── bookmarksSlice.ts # Bookmark state management
+│   │   ├── JobsSlice.ts      # Job listings state management
+│   ├── index.ts             # Root Redux store configuration
+├── scripts/                 # Utility scripts
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## API Integration
 
-## Learn more
+The app fetches job listings via an external API and displays job details including:
+- **Title**
+- **Location**
+- **Salary**
+- **Phone Contact**
+- **Images**
+- **Job Type**
+- **Phone Number**
+- **more**
 
-To learn more about developing your project with Expo, look at the following resources:
+## State Management
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- Redux Toolkit is used for managing application state.
+- Redux Persist ensures bookmarked jobs remain saved even after app restarts.
 
-## Join the community
+## Dependencies
 
-Join our community of developers creating universal apps.
+```json
+{
+  "@expo/vector-icons": "^14.0.2",
+  "@react-native-async-storage/async-storage": "^2.1.1",
+  "@react-navigation/bottom-tabs": "^7.2.0",
+  "@react-navigation/native": "^7.0.14",
+  "@reduxjs/toolkit": "^2.5.1",
+  "expo": "~52.0.33",
+  "react-native": "0.76.7",
+  "react-redux": "^9.2.0",
+  "redux-persist": "^6.0.0",
+  "tailwindcss": "^3.4.17"
+}
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Contributing
+
+1. Fork the repository.
+2. Create a new feature branch: `git checkout -b feature-name`
+3. Commit your changes: `git commit -m "Add feature"`
+4. Push to the branch: `git push origin feature-name`
+5. Open a Pull Request.
+
+## License
+
+This project is licensed under the MIT License.
+

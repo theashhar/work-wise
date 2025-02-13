@@ -18,7 +18,6 @@ type JobCardProps = {
   jobHours: string;
   Experience: string;
   job: object;
-
 };
 
 const JobCard: React.FC<JobCardProps> = ({
