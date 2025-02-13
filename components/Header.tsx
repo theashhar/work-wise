@@ -12,7 +12,7 @@ export default function AppHeader({ Screen, home = true}: { Screen: string, home
   const colorScheme = useColorScheme();
 
   return (<>
-    <SafeAreaView className='w-full h-36 -mb-12  flex flex-row items-start py-6 dark:bg-indigo-800 bg-indigo-400 '>
+    <SafeAreaView className='w-full h-44 -mb-12  flex flex-row items-start py-6 dark:bg-indigo-800 bg-indigo-400 '>
       <View className='flex flex-row items-center w-full gap-2 px-8'>
         <Image source={require('../assets/images/logoIcon.png')} className='w-9 h-10'  resizeMode='contain' />
         <Text className='text-3xl mt-2 font-bold color-white'>{Screen}</Text>

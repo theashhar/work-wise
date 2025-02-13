@@ -106,10 +106,13 @@ const JobCard: React.FC<JobCardProps> = ({
       <View className="h-[0.7px] dark:bg-neutral-500 bg-neutral-300 my-6" />
 
       {/* Salary Section */}
-      <View className=" absolute right-4 bottom-3 flex flex-row items-center gap-3 mt-1">
-        <MaterialCommunityIcons name="cash-multiple" size={20} color="#F9C026" />
-        <Text className="w-[140]  text-base font-bold text-amber-400" numberOfLines={1} ellipsizeMode="tail">{salary}</Text>
-      </View>
+      <View className="w-[180px] absolute right-4 bottom-4 flex flex-row justify-end items-center gap-3 mt-1">
+  <MaterialCommunityIcons name="cash-multiple" size={20} color="#F9C026" />
+  <Text className=" text-base font-bold text-amber-400 text-right" numberOfLines={1} ellipsizeMode="tail">
+    {salary}
+  </Text>
+</View>
+
 
       {/* Phone Section */}
       <View className="flex flex-row items-center mt-1 gap-1">
