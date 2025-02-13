@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { addBookmark, removeBookmark, toggleBookmark } from '@/reduxStore/slices/bookmarksSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 // Define the type for the JobCard props
 type JobCardProps = {
+  id: string;
   title: string;
   description: string;
   location: string;
@@ -12,10 +15,12 @@ type JobCardProps = {
   phone: string;
   jobHours: string;
   Experience: string;
+  onPressBookMark: () => void;
   onPress: () => void;
 };
 
 const JobCard: React.FC<JobCardProps> = ({
+  id,
   title,
   description,
   location,
@@ -23,10 +28,36 @@ const JobCard: React.FC<JobCardProps> = ({
   phone,
   jobHours,
   Experience,
+  onPressBookMark,
   onPress,
 }) => {
   const colorScheme = useColorScheme();
-  const [isBookmarked, setIsBookmarked] = useState(false);
+  // const [isBookmarked, setIsBookmarked] = useState(false);
+  const dispatch = useDispatch();
+  const bookmarkedJobs = useSelector((state)  => state.bookmarks.bookmarkedJobs);
+  const isBookmarked = bookmarkedJobs.some((job) => job.id === id);
+
+  // const handleBookmark = () => {
+  //   if (isBookmarked) {
+  //     dispatch(removeBookmark(id));
+  //   } else {
+  //     dispatch(addBookmark({ id, title, description, location, salary, phone, jobHours, Experience }));
+  //   }
+  // };
+  const handleBookmark = () => {
+    dispatch(
+      toggleBookmark({
+        id,
+        title,
+        description,
+        location,
+        salary,
+        phone,
+        jobHours,
+        Experience,
+      })
+    );
+  };
 
   // Extract the first letter of the job title
   const firstLetter = title.charAt(0).toUpperCase();
@@ -66,7 +97,8 @@ const JobCard: React.FC<JobCardProps> = ({
         {/* Bookmark Icon */}
         <TouchableOpacity
           className="p-3 absolute -right-2 -top-2"
-          onPress={() => setIsBookmarked((prev) => !prev)}
+          onPress={handleBookmark}
+        
         >
           <MaterialCommunityIcons
             name={isBookmarked ? 'bookmark' : 'bookmark-outline'}

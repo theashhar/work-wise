@@ -27,16 +27,22 @@ const JobsScreen = () => {
   useEffect(() => {
     if (jobs?.hasMore === false) {
       setHasMore(false);
+      console.log('No more jobs to load');
     }
   }, [jobs]);
+  
 
   // Load more jobs when the user scrolls to the end
   const loadMoreJobs = () => {
-    if (!isFetching && hasMore && filteredJobs.length > 0) {
+    if (!isFetching && hasMore && page < 3) {  // Limit page to 3
       setPage((prev) => prev + 1);
+    } else if (page >= 3) {
+      setHasMore(false);
+      console.log('Reached last page. No more jobs to load.');
     }
   };
-
+  
+  
   // Render a footer: Loader when fetching, "No More Jobs" when exhausted
   const renderFooter = () => {
     if (!hasMore) {
@@ -55,7 +61,7 @@ const JobsScreen = () => {
   return (
     <>
       <AppHeader Screen="Jobs" />
-      <SafeAreaView>
+      <View>
         {/* Search Bar */}
         <View className="z-20 p-4 my-0 shadow-sm rounded-b-3xl border-b dark:bg-indigo-800 bg-indigo-400">
           <TextInput
@@ -72,6 +78,7 @@ const JobsScreen = () => {
           data={filteredJobs}
           renderItem={({ item }) => (
             <JobCard
+              id={item.id} 
               title={item?.title ?? 'No Title'}
               description={item?.other_details || item?.title || 'No Description'}
               location={item?.primary_details?.Place || 'Unknown Location'}
@@ -80,6 +87,7 @@ const JobsScreen = () => {
               jobHours={item?.job_hours || 'N/A'}
               Experience={item?.primary_details?.Experience || 'No Experience Required'}
               onPress={() => console.log('Job pressed:', item.title)}
+              onPressBookMark={() => console.log('Bookmarked:', item.title)}
             />
           )}
           keyExtractor={(item) => item.id}
@@ -96,7 +104,7 @@ const JobsScreen = () => {
 
         {/* Error Message */}
         {error && <View className="p-4"><Text className="text-red-500 text-center">Error loading jobs</Text></View>}
-      </SafeAreaView>
+      </View>
     </>
   );
 };
