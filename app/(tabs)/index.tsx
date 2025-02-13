@@ -3,13 +3,14 @@ import JobCard from '@/components/JobCard';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme.web';
 import { useGetJobsQuery } from '@/reduxStore/slices/JobsSlice';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FlatList, View, TextInput, ActivityIndicator, SafeAreaView, Text } from 'react-native';
 
 const JobsScreen = () => {
   const colorScheme = useColorScheme();
   const [searchQuery, setSearchQuery] = useState('');
   const [page, setPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
   const { data: jobs = {}, isLoading, isFetching, error } = useGetJobsQuery(page);
 
@@ -17,40 +18,39 @@ const JobsScreen = () => {
     job?.title?.toLowerCase().includes(searchQuery.toLowerCase())
   ) ?? [];
 
-  console.log('data --- ', jobs?.results);
+  // Log which page is being fetched in real-time
+  useEffect(() => {
+    console.log(`Fetching page: ${page}`);
+  }, [page]);
+
+  // Stop loading more if no more jobs are available
+  useEffect(() => {
+    if (jobs?.hasMore === false) {
+      setHasMore(false);
+    }
+  }, [jobs]);
 
   // Load more jobs when the user scrolls to the end
   const loadMoreJobs = () => {
-    if (!isFetching) {
+    if (!isFetching && hasMore && filteredJobs.length > 0) {
       setPage((prev) => prev + 1);
     }
   };
 
-  // Render a loading indicator at the bottom of the list
+  // Render a footer: Loader when fetching, "No More Jobs" when exhausted
   const renderFooter = () => {
-    if (!isFetching) return null;
-    return (
-      <View className="py-4">
-        <ActivityIndicator size="large" color="#FFBB00" />
-      </View>
-    );
+    if (!hasMore) {
+      return <Text className="text-center text-gray-500 py-4">No more jobs to load</Text>;
+    }
+    if (isFetching) {
+      return (
+        <View className="py-4">
+          <ActivityIndicator size="large" color="#FFBB00" />
+        </View>
+      );
+    }
+    return null;
   };
-
-  // Render each job item
-  const renderJobItem = ({ item }) => (
-    <JobCard
-      title={item?.title ?? 'No Title'}
-      description={item?.other_details || item?.title || 'No Description'}
-      location={item?.primary_details?.Place || 'Unknown Location'}
-      salary={item?.primary_details?.Salary || 'Not Provided'}
-      phone={item?.whatsapp_no || 'N/A'}
-      jobHours={item?.job_hours || 'N/A'}
-      Experience={item?.primary_details?.Experience || 'No Experience Required'}
-      onPress={() => {
-        console.log('Job pressed:', item.title);
-      }}
-    />
-  );
 
   return (
     <>
@@ -70,13 +70,28 @@ const JobsScreen = () => {
         {/* Job List */}
         <FlatList
           data={filteredJobs}
-          renderItem={renderJobItem}
+          renderItem={({ item }) => (
+            <JobCard
+              title={item?.title ?? 'No Title'}
+              description={item?.other_details || item?.title || 'No Description'}
+              location={item?.primary_details?.Place || 'Unknown Location'}
+              salary={item?.primary_details?.Salary || 'Not Provided'}
+              phone={item?.whatsapp_no || 'N/A'}
+              jobHours={item?.job_hours || 'N/A'}
+              Experience={item?.primary_details?.Experience || 'No Experience Required'}
+              onPress={() => console.log('Job pressed:', item.title)}
+            />
+          )}
           keyExtractor={(item) => item.id}
           onEndReached={loadMoreJobs}
           contentContainerStyle={{ paddingTop: 20, paddingBottom: 190 }}
           onEndReachedThreshold={0.5}
           ListFooterComponent={renderFooter}
-          ListEmptyComponent={<Text className="text-neutral-700 text-center mt-5">No Jobs</Text>}
+          ListEmptyComponent={
+            <Text className="text-neutral-700 dark:text-neutral-300 text-center mt-5">
+              {searchQuery ? 'No matching jobs found' : 'No Jobs'}
+            </Text>
+          }
         />
 
         {/* Error Message */}
