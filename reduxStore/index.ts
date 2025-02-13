@@ -1,32 +1,12 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import contactsReducer from './slices/JobSlice';
-import themeReducer from './slices/themeSlice'; // Import your theme slice
-import { persistStore, persistReducer } from 'redux-persist';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { configureStore } from '@reduxjs/toolkit';
+import { jobsApi } from './slices/JobsSlice';
 
-
-const persistConfig = {
-  key: 'root', 
-  storage: AsyncStorage, 
-  whitelist: ['contacts', 'theme'], // slices to persist
-};
-
-const rootReducer = combineReducers({
-  contacts: contactsReducer,
-  theme: themeReducer,
-});
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-export const store = configureStore({
-  reducer: persistedReducer,
+const store = configureStore({
+  reducer: {
+    [jobsApi.reducerPath]: jobsApi.reducer,
+  },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false, // Disable serializable check for redux-persist
-    }),
+    getDefaultMiddleware().concat(jobsApi.middleware),
 });
 
-export const persistor = persistStore(store);
-
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export default store;

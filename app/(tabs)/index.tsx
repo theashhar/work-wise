@@ -5,7 +5,7 @@ import AppHeader from '@/components/Header';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme.web';
 import JobCard from '@/components/JobCard';
-import { jobData } from './dummy';
+import { jobData } from '@/constants/dummy';
 
 export default function HomeScreen() {
   const colorScheme = useColorScheme();

@@ -71,8 +71,8 @@ const JobCard: React.FC<JobCardProps> = ({
           <MaterialCommunityIcons
             name={isBookmarked ? 'bookmark' : 'bookmark-outline'}
             size={24}
-            color={isBookmarked ? '#F9C026' : 'white'}
-          />
+            color={isBookmarked ? '#F9C026' : colorScheme === 'dark' ? 'white' : 'black'}
+            />
         </TouchableOpacity>
       </View>
 
@@ -106,9 +106,9 @@ const JobCard: React.FC<JobCardProps> = ({
       <View className="h-[0.7px] dark:bg-neutral-500 bg-neutral-300 my-6" />
 
       {/* Salary Section */}
-      <View className="absolute right-5 bottom-3 flex flex-row items-center gap-3 mt-1">
+      <View className=" absolute right-4 bottom-3 flex flex-row items-center gap-3 mt-1">
         <MaterialCommunityIcons name="cash-multiple" size={20} color="#F9C026" />
-        <Text className="text-base font-bold text-amber-400">{salary}</Text>
+        <Text className="w-[140]  text-base font-bold text-amber-400" numberOfLines={1} ellipsizeMode="tail">{salary}</Text>
       </View>
 
       {/* Phone Section */}
