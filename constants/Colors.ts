@@ -24,7 +24,7 @@ export const Colors = {
   },
   dark: {
     theme: theme, // Primary color (Yellow)
-    bgSecondary: '#232729', // Dark background for secondary elements
+    bgSecondary: '#26292B', // Dark background for secondary elements
     border: '#3a3a3b',
     same: '#151718', // Dark for consistency
     invert: '#ECEDEE', // Light text for dark mode
