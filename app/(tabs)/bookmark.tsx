@@ -23,7 +23,8 @@ export default function Bookmark() {
                 phone={item.phone}
                 jobHours={item.jobHours}
                 Experience={item.Experience}
-                onPress={() => console.log('Job pressed:', item.title)}
+                job={item} // Pass the entire job object
+
               />
             )}
             keyExtractor={(item) => item.id}

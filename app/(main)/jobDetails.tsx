@@ -8,9 +8,20 @@ import AppHeader from '@/components/Header';
 
 const JobDetailsScreen = () => {
   const { job } = useLocalSearchParams(); // Get the job data from navigation params
-  const parsedJob = JSON.parse(job); // Parse the job data
+//   const parsedJob = JSON.parse(job); // Parse the job data
   const colorScheme = useColorScheme();
 
+  let parsedJob;
+  try {
+    parsedJob = typeof job === "string" ? JSON.parse(job) : job; // Handle both string & object cases
+  } catch (error) {
+    console.error("JSON Parse Error:", error);
+    parsedJob = null;
+  }
+
+  if (!parsedJob) {
+    return <Text className="text-center text-red-500 mt-10">Invalid Job Data</Text>;
+  }
   return (
     <>
       {/* Header */}
@@ -53,7 +64,7 @@ const JobDetailsScreen = () => {
             </Text>
           </View>
           <Text className="text-sm dark:text-neutral-300 text-neutral-600">
-            {parsedJob.other_details}
+            {parsedJob.other_details ?? 'No Description'} 
           </Text>
         </View>
 

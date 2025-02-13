@@ -86,8 +86,6 @@ const JobsScreen = () => {
               phone={item?.whatsapp_no || 'N/A'}
               jobHours={item?.job_hours || 'N/A'}
               Experience={item?.primary_details?.Experience || 'No Experience Required'}
-              onPress={() => console.log('Job pressed:', item.title)}
-              onPressBookMark={() => console.log('Bookmarked:', item.title)}
               job={item} // Pass the entire job object
 
             />

@@ -9,7 +9,7 @@ const bookmarksSlice = createSlice({
   initialState,
   reducers: {
     toggleBookmark: (state, action) => {
-      const job = action.payload;
+      const job = action.payload; // This is the entire job object
       const index = state.bookmarkedJobs.findIndex((j) => j.id === job.id);
 
       if (index === -1) {

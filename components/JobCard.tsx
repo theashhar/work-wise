@@ -17,8 +17,6 @@ type JobCardProps = {
   phone: string;
   jobHours: string;
   Experience: string;
-  onPressBookMark: () => void;
-  onPress: () => void;
   job: object;
 
 };
@@ -32,8 +30,6 @@ const JobCard: React.FC<JobCardProps> = ({
   phone,
   jobHours,
   Experience,
-  onPressBookMark,
-  onPress,
   job,
 }) => {
   const colorScheme = useColorScheme();
@@ -52,6 +48,7 @@ const JobCard: React.FC<JobCardProps> = ({
         phone,
         jobHours,
         Experience,
+        job
       })
     );
   };
@@ -64,7 +61,7 @@ const JobCard: React.FC<JobCardProps> = ({
       activeOpacity={0.8}
       className="p-4 my-2 mx-4 rounded-2xl shadow-sm dark:bg-neutral-800 bg-white border dark:border-neutral-700 border-neutral-200"
       onPress={() =>
-         router.push({ pathname: '/(main)/jobDetails', params: { job: JSON.stringify(job) }})}
+         router.push({ pathname: '/(main)/jobDetails', params: { job: encodeURIComponent(JSON.stringify(job)) }})}
  
          >
       {/* First Letter and Title Section */}
