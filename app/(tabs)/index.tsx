@@ -29,12 +29,9 @@ export default function HomeScreen() {
       <ScrollView>
 
         <View className='h-8 bg-transparent' />
-        <JobCard title='Telecallers wanted' location='Ameerpet, Hyderabad' salary='₹12000 - ₹16000' phone='8465809861' jobHours='Full Time' onPress={{}} />
-        <JobCard title='Telecallers wanted' location='Ameerpet, Hyderabad' salary='₹12000 - ₹16000' phone='8465809861' jobHours='Full Time' onPress={{}} />
-        <JobCard title='Telecallers wanted' location='Ameerpet, Hyderabad' salary='₹12000 - ₹16000' phone='8465809861' jobHours='Part Time' onPress={{}} />
-        <JobCard title='Telecallers wanted' location='Ameerpet, Hyderabad' salary='₹12000 - ₹16000' phone='8465809861' jobHours='Full Time' onPress={{}} />
-        <JobCard title='Telecallers wanted' location='Ameerpet, Hyderabad' salary='₹12000 - ₹16000' phone='8465809861' jobHours='Internship' onPress={{}} />
-        <JobCard title='Telecallers wanted' location='Ameerpet, Hyderabad' salary='₹12000 - ₹16000' phone='8465809861' jobHours='Full Time' onPress={{}} />
+        <JobCard title='9elecallers wanted asd as  asd asd sad' location='Ameerpet, Hyderabad' salary='₹12000 - ₹16000' phone='8465809861' jobHours='Full Time' Experience='Any Experience' onPress={{}} />
+        <JobCard title='Telecallers wanted' location='Ameerpet, Hyderabad' salary='₹12000 - ₹16000' phone='8465809861' jobHours='Full Time' Experience='Any Experience' onPress={{}} />
+
       </ScrollView>
 
     </SafeAreaView>
