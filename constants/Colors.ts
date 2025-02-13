@@ -1,26 +1,40 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
+const tintColorLight = '#1C1C1C';
+const tintColorDark = '#FFF';
 
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
+export const theme = '#FFBB00';
 
 export const Colors = {
+  theme: theme,
   light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
+    theme: theme, // Primary color (Yellow)
+    bgSecondary: '#FFFFFF', // White background for secondary elements
+    same: '#FFFFFF', // White for consistency
+    invert: '#1C1C1C', // Dark text for light mode
+    invertLight: '#363636', // Lighter dark text for subtlety
+    text: '#1C1C1C', // Primary text color
+    background: '#F5F5F5', // Light gray background
+    tint: tintColorLight, // Dark tint for light mode
+    icon: '#687076', // Gray for icons
+    tabIconDefault: '#687076', // Gray for unselected tab icons
+    tabIconSelected: tintColorLight, // Dark for selected tab icons
+    accent: '#0A84FF', // Bright blue for accents (e.g., buttons, links)
+    error: '#FF3B30', // Red for error messages
+    success: '#4CD964', // Green for success messages
   },
   dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
+    theme: theme, // Primary color (Yellow)
+    bgSecondary: '#151718', // Dark background for secondary elements
+    same: '#151718', // Dark for consistency
+    invert: '#ECEDEE', // Light text for dark mode
+    invertLight: '#CFCFCF', // Lighter text for subtlety
+    text: '#ECEDEE', // Primary text color
+    background: '#1C1C1C', // Dark background
+    tint: tintColorDark, // Light tint for dark mode
+    icon: '#9BA1A6', // Light gray for icons
+    tabIconDefault: '#9BA1A6', // Light gray for unselected tab icons
+    tabIconSelected: tintColorDark, // White for selected tab icons
+    accent: '#0A84FF', // Bright blue for accents (e.g., buttons, links)
+    error: '#FF453A', // Red for error messages
+    success: '#30D158', // Green for success messages
   },
 };
